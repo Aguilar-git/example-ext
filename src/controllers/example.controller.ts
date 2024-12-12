@@ -8,8 +8,7 @@ export class ExampleController {
 
 	@Post('post-path')
 	postMethod(request: any, manager: Manager) {
-		console.log(request.body);
-		return request;
+		return request.body;
 	}
 
 	@Put('put-path')
