@@ -4,8 +4,6 @@ import { ExampleJob } from './jobs';
 import { DiscoveryModule } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 
-export { ExampleExtension, ExampleController, ExampleJob };
-
 @Module({
 	imports: [DiscoveryModule],
 	controllers: [ExampleController],
