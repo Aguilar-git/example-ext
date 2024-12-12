@@ -8,12 +8,10 @@ export class ExampleController {
 
 	@Post('post-path')
 	postMethod(request: any, manager: Manager) {
-		const body = {
+		return {
 			response: 'My custom response',
 			manager: Object.getOwnPropertyNames(manager),
 		};
-
-		return body;
 	}
 
 	@Put('put-path')
