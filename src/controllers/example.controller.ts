@@ -1,4 +1,5 @@
 import { Controller, Post, Get, Put, Delete, Patch, All } from '@nestjs/common';
+import { Manager } from '@suppa/sdk';
 
 @Controller('example-controller')
 export class ExampleController {
@@ -6,7 +7,10 @@ export class ExampleController {
 	getMethod() {}
 
 	@Post('post-path')
-	postMethod() {}
+	postMethod(request: any, manager: Manager) {
+		console.log(request.body);
+		return request;
+	}
 
 	@Put('put-path')
 	putMethod() {}
