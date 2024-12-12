@@ -1,12 +1,19 @@
-import { Controller, Post } from '@nestjs/common';
-import { Manager } from '@suppa/sdk';
+import { Controller, Post, Get, Put, Delete, Patch, All } from '@nestjs/common';
 
 @Controller('example-controller')
 export class ExampleController {
-	@Post('ent-point')
-	testControllerMethod(request: any, manager: Manager) {
-		console.log(request);
+	@Get('get-path')
+	getMethod() {}
 
-		return request;
-	}
+	@Post('post-path')
+	postMethod() {}
+
+	@Put('put-path')
+	putMethod() {}
+
+	@Delete('delete-path')
+	deleteMethod() {}
+
+	@All('all-path')
+	allMethod() {}
 }
