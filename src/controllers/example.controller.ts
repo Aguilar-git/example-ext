@@ -1,8 +1,13 @@
 import { Controller, Post, Get, Put, Delete, Patch, All } from '@nestjs/common';
 import { Manager } from '@suppa/sdk';
+import { ExampleJob } from '../jobs';
 
 @Controller('example-controller')
 export class ExampleController {
+	constructor(private readonly exampleJob: ExampleJob) {
+		console.log(exampleJob);
+	}
+
 	@Get('get-path')
 	getMethod() {}
 
