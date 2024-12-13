@@ -1,11 +1,15 @@
 import { Controller, Post, Get, Put, Delete, Patch, All } from '@nestjs/common';
 import { Manager } from '@suppa/sdk';
 import { ExampleJob } from '../jobs';
+import { DiscoveryService } from '@nestjs/core';
 
 @Controller('example-controller')
 export class ExampleController {
-	constructor(private readonly exampleJob: ExampleJob) {
-		console.log(exampleJob);
+	constructor(
+		private readonly exampleJob: ExampleJob,
+		private readonly discoveryService: DiscoveryService,
+	) {
+		console.log(exampleJob, discoveryService);
 	}
 
 	@Get('get-path')
