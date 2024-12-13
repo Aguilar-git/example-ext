@@ -5,13 +5,6 @@ import { DiscoveryService } from '@nestjs/core';
 
 @Controller('example-controller')
 export class ExampleController {
-	constructor(
-		private readonly exampleJob: ExampleJob,
-		private readonly discoveryService: DiscoveryService,
-	) {
-		console.log(exampleJob, discoveryService);
-	}
-
 	@Get('get-path')
 	getMethod() {}
 
