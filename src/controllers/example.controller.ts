@@ -9,10 +9,9 @@ export class ExampleController {
 	getMethod() {}
 
 	@Post('post-path')
-	postMethod(request: any, manager: Manager) {
+	postMethod() {
 		return {
 			response: 'My custom response',
-			manager: Object.getOwnPropertyNames(manager),
 		};
 	}
 
