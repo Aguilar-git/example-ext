@@ -1,7 +1,4 @@
-import { Controller, Post, Get, Put, Delete, Patch, All } from '@nestjs/common';
-import { Manager } from '@suppa/sdk';
-import { ExampleJob } from '../jobs';
-import { DiscoveryService } from '@nestjs/core';
+import { Controller, Post, Get, Put, Delete, All, Body } from '@nestjs/common';
 
 @Controller('example-controller')
 export class ExampleController {
@@ -9,7 +6,8 @@ export class ExampleController {
 	getMethod() {}
 
 	@Post('post-path')
-	postMethod() {
+	postMethod(@Body() body: any) {
+		console.log(body);
 		return {
 			response: 'My custom response',
 		};
