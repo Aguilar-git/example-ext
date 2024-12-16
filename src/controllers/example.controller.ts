@@ -1,4 +1,13 @@
-import { Controller, Post, Get, Put, Delete, All, Body } from '@nestjs/common';
+import {
+	Controller,
+	Post,
+	Get,
+	Put,
+	Delete,
+	All,
+	Body,
+	Request,
+} from '@nestjs/common';
 
 @Controller('example-controller')
 export class ExampleController {
@@ -6,8 +15,8 @@ export class ExampleController {
 	getMethod() {}
 
 	@Post('post-path')
-	postMethod(@Body() body: any) {
-		console.log(body);
+	postMethod(@Request() request: any) {
+		console.log(request['manager']);
 		return {
 			response: 'My custom response',
 		};
