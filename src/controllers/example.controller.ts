@@ -12,7 +12,7 @@ export class ExampleController {
 		@Manager() manager: QueryManager,
 		@Account() account: TAccount,
 	) {
-		console.log(body, manager);
+		console.log({ body, manager, account });
 
 		return {
 			response: 'My custom response',
