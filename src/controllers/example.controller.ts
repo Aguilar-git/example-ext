@@ -6,7 +6,7 @@ import {
 	Delete,
 	All,
 	Body,
-	Request,
+	Headers,
 } from '@nestjs/common';
 import { Manager } from '@suppa/sdk';
 
@@ -16,7 +16,7 @@ export class ExampleController {
 	getMethod() {}
 
 	@Post('post-path')
-	postMethod(@Body() body: any) {
+	postMethod(@Body() body: any, @Headers() headers: any) {
 		console.log(body);
 
 		return {
