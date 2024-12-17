@@ -8,6 +8,7 @@ import {
 	Body,
 	Request,
 } from '@nestjs/common';
+import { Manager } from '@suppa/sdk';
 
 @Controller('example-controller')
 export class ExampleController {
@@ -15,8 +16,9 @@ export class ExampleController {
 	getMethod() {}
 
 	@Post('post-path')
-	postMethod(@Request() request: any) {
-		console.log(request['manager']);
+	postMethod(@Body() body: any) {
+		console.log(body);
+
 		return {
 			response: 'My custom response',
 		};
