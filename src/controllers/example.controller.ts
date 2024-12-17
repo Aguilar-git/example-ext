@@ -1,14 +1,5 @@
-import {
-	Controller,
-	Post,
-	Get,
-	Put,
-	Delete,
-	All,
-	Body,
-	Headers,
-} from '@nestjs/common';
-import { Manager } from '@suppa/sdk';
+import { Controller, Post, Get, Put, Delete, All, Body } from '@nestjs/common';
+import { Account, Manager, QueryManager, TAccount } from '@suppa/sdk';
 
 @Controller('example-controller')
 export class ExampleController {
@@ -16,8 +7,12 @@ export class ExampleController {
 	getMethod() {}
 
 	@Post('post-path')
-	postMethod(@Body() body: any, @Headers() headers: any) {
-		console.log(body);
+	postMethod(
+		@Body() body: any,
+		@Manager() manager: QueryManager,
+		@Account() account: TAccount,
+	) {
+		console.log(body, manager);
 
 		return {
 			response: 'My custom response',
