@@ -9,6 +9,8 @@ import {
 	Account,
 	QueryManager,
 	TAccount,
+	Query,
+	Result,
 } from '@suppa/sdk';
 import { TaskEntity } from '../entities';
 import { DateCalculator } from '../utils';
@@ -17,12 +19,12 @@ import { DateCalculator } from '../utils';
 export class ExampleExtension {
 	@BeforeUpdate()
 	async beforeUpdate(
-		params: UpdateParams,
-		manager: QueryManager,
-		account: TAccount,
+		@Query() query: UpdateParams,
+		@Manager() manager: QueryManager,
+		@Account() account: TAccount,
 	): Promise<UpdateParams> {
-		const { start_date, duration, end_date } = params.fields;
-		if (!start_date && !duration && !end_date) return params;
+		const { start_date, duration, end_date } = query.fields;
+		if (!start_date && !duration && !end_date) return query;
 
 		const dateCalc = DateCalculator.getInstance();
 		const calcResult =
@@ -32,18 +34,18 @@ export class ExampleExtension {
 					? dateCalc.calculateEndDate(start_date, duration)
 					: dateCalc.calculateStartDate(duration, end_date);
 
-		params.fields.start_date = calcResult.start.toISOString();
-		params.fields.end_date = calcResult.end.toISOString();
-		params.fields.duration = calcResult.duration;
+		query.fields.start_date = calcResult.start.toISOString();
+		query.fields.end_date = calcResult.end.toISOString();
+		query.fields.duration = calcResult.duration;
 
-		return params;
+		return query;
 	}
 
 	@AfterUpdate()
 	async afterUpdate(
-		records: TaskEntity[],
-		manager: QueryManager,
-		account: TAccount,
+		@Result() records: TaskEntity[],
+		@Manager() manager: QueryManager,
+		@Account() account: TAccount,
 	): Promise<TaskEntity[]> {
 		const [firstTask] = records;
 		const projectId = firstTask?.project?.id;
