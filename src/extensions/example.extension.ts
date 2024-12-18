@@ -18,11 +18,7 @@ import { DateCalculator } from '../utils';
 @Extension('tasks')
 export class ExampleExtension {
 	@BeforeUpdate()
-	async beforeUpdate(
-		@Query() query: UpdateParams,
-		@Manager() manager: QueryManager,
-		@Account() account: TAccount,
-	): Promise<UpdateParams> {
+	async beforeUpdate(@Query() query: UpdateParams): Promise<UpdateParams> {
 		const { start_date, duration, end_date } = query.fields;
 		if (!start_date && !duration && !end_date) return query;
 
@@ -45,7 +41,6 @@ export class ExampleExtension {
 	async afterUpdate(
 		@Result() records: TaskEntity[],
 		@Manager() manager: QueryManager,
-		@Account() account: TAccount,
 	): Promise<TaskEntity[]> {
 		const [firstTask] = records;
 		const projectId = firstTask?.project?.id;
