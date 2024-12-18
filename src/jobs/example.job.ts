@@ -1,7 +1,10 @@
-import { Job, QueryManager, SubscribeJob } from '@suppa/sdk';
+import { Job, Manager, QueryManager, SubscribeJob } from '@suppa/sdk';
 
 @Job('example-job')
 export class ExampleJob {
 	@SubscribeJob()
-	testJobMethod(manager: QueryManager) {}
+	testJobMethod(@Manager() manager: QueryManager) {
+		console.log('---- Job ----');
+		console.log(manager);
+	}
 }
