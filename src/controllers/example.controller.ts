@@ -7,12 +7,8 @@ export class ExampleController {
 	getMethod() {}
 
 	@Post('post-path')
-	postMethod(
-		@Body() body: any,
-		@Manager() manager: QueryManager,
-		@Account() account: TAccount,
-	) {
-		console.log({ body, manager, account });
+	postMethod(@Body() body: any, @Manager() manager: QueryManager) {
+		console.log({ body, manager });
 
 		return {
 			response: 'My custom response',
