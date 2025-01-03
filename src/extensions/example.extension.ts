@@ -17,10 +17,6 @@ import { DateCalculator } from '../utils';
 
 @Extension('tasks')
 export class ExampleExtension {
-	constructor() {
-		console.log('====== Env:', process.env);
-	}
-
 	@BeforeUpdate()
 	async beforeUpdate(@Query() query: UpdateParams): Promise<UpdateParams> {
 		const { start_date, duration, end_date } = query.fields;
